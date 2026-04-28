@@ -1,6 +1,6 @@
 # 🍽️ PLATE & HOME
 
-> 풀스택 쇼핑몰 프로젝트 | FastAPI + MySQL + OpenAI RAG
+> 풀스택 쇼핑몰 프로젝트 | FastAPI + MySQL + OpenAI RAG + AI ChatBot
 
 **🔗 GitHub Pages :** [https://ponyo911.github.io/Plate-Home/](https://ponyo911.github.io/Plate-Home/)
 
