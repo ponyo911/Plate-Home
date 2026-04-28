@@ -105,6 +105,8 @@ PALTE_HOME_FASTAPI/
 * 관리자 아이디(ADMIN)로 로그인 가능
 
 <img width="1850" height="1040" alt="회원가입" src="https://github.com/user-attachments/assets/8c5385c5-97dd-4445-8615-1cf7d87714ad" />
+<br>
+<br>
 <img width="1850" height="1040" alt="로그인" src="https://github.com/user-attachments/assets/46725a10-d131-4d41-ab09-3255f4ad61ac" />
 
 
@@ -150,6 +152,8 @@ PALTE_HOME_FASTAPI/
 * 빠른 질문 버튼 — 인기 상품 추천 / 머그잔 종류 / 배송 안내 / 교환반품 / 선물 추천
 
 <img width="1850" height="1040" alt="챗봇_1" src="https://github.com/user-attachments/assets/e838a5f7-398a-4dd2-9185-986305c2bd21" />
+<br>
+<br>
 <img width="1850" height="1040" alt="챗봇 전체화면" src="https://github.com/user-attachments/assets/4b484011-e613-40db-9181-3355deccae50" />
 
 
