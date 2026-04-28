@@ -8,7 +8,7 @@ const state = {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("/api/data");
+    const res = await fetch("./json/data.json");
 
     if (!res.ok) {
       throw new Error("JSON 파일을 불러오지 못했습니다.");
