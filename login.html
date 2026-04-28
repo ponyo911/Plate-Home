@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 / 회원가입 | PLATE & HOME</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <style>
+        .auth-wrap {
+            max-width: 400px;
+            margin: 120px auto;
+            padding: 0 24px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .auth-tab {
+            flex: 1;
+            height: 48px;
+            font-size: 15px;
+            font-weight: 700;
+            background: none;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .auth-tab.active {
+            color: #111;
+            border-bottom: 2px solid #111;
+            margin-bottom: -2px;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .auth-input {
+            height: 48px;
+            border: 1px solid #ccc;
+            padding: 0 16px;
+            font-size: 14px;
+        }
+
+        .email-wrap {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .email-id {
+            flex: 1;
+            height: 48px;
+            border: 1px solid #ccc;
+            padding: 0 12px;
+            font-size: 14px;
+        }
+
+        .email-at {
+            font-size: 16px;
+            color: #555;
+            font-weight: 700;
+        }
+
+        .email-domain {
+            flex: 1;
+            height: 48px;
+            border: 1px solid #ccc;
+            padding: 0 12px;
+            font-size: 14px;
+        }
+
+        .email-select {
+            height: 48px;
+            border: 1px solid #ccc;
+            padding: 0 8px;
+            font-size: 13px;
+            background: #fff;
+        }
+
+        .auth-btn {
+            height: 52px;
+            background: #111;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            font-weight: 700;
+            font-size: 15px;
+            margin-top: 4px;
+        }
+
+        .auth-btn:hover {
+            background: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="inner header-inner">
+            <a href="./index.html" class="logo">PLATE & HOME</a>
+        </div>
+    </header>
+
+    <main class="auth-wrap">
+        <div class="auth-tabs">
+            <button class="auth-tab active" onclick="switchTab('login')">로그인</button>
+            <button class="auth-tab" onclick="switchTab('signup')">회원가입</button>
+        </div>
+
+        <!-- 로그인 폼 -->
+        <div id="loginSection">
+            <form onsubmit="handleLogin(event)" class="auth-form">
+                <input type="text" id="loginEmail" class="auth-input" placeholder="이메일 또는 관리자 아이디" required>
+                <input type="password" id="loginPw" class="auth-input" placeholder="비밀번호" required>
+                <button type="submit" class="auth-btn">로그인</button>
+            </form>
+        </div>
+
+        <!-- 회원가입 폼 -->
+        <div id="signupSection" style="display:none;">
+            <form onsubmit="handleSignup(event)" class="auth-form">
+                <div class="email-wrap">
+                    <input type="text" id="emailId" class="email-id" placeholder="이메일 아이디" required>
+                    <span class="email-at">@</span>
+                    <input type="text" id="emailDomain" class="email-domain" placeholder="직접입력">
+                    <select class="email-select" onchange="selectDomain(this.value)">
+                        <option value="">직접입력</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="hanmail.com">hanmail.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="hotmail.com">hotmail.com</option>
+                    </select>
+                </div>
+                <input type="password" id="signupPw" class="auth-input" placeholder="비밀번호 (6자 이상)" required>
+                <input type="text" id="signupName" class="auth-input" placeholder="이름 (2자 이상)" required>
+                <button type="submit" class="auth-btn">회원가입</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tab) {
+            const isLogin = tab === 'login';
+            document.getElementById('loginSection').style.display = isLogin ? 'block' : 'none';
+            document.getElementById('signupSection').style.display = isLogin ? 'none' : 'block';
+            document.querySelectorAll('.auth-tab')[0].className = isLogin ? 'auth-tab active' : 'auth-tab';
+            document.querySelectorAll('.auth-tab')[1].className = isLogin ? 'auth-tab' : 'auth-tab active';
+        }
+
+        function selectDomain(value) {
+            const domainInput = document.getElementById('emailDomain');
+            if (value) {
+                domainInput.value = value;
+                domainInput.readOnly = true;
+            } else {
+                domainInput.value = '';
+                domainInput.readOnly = false;
+                domainInput.focus();
+            }
+        }
+
+        function getFullEmail() {
+            const id = document.getElementById('emailId').value.trim();
+            const domain = document.getElementById('emailDomain').value.trim();
+            return `${id}@${domain}`;
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById("loginEmail").value.trim();
+            const password = document.getElementById("loginPw").value;
+            try {
+                const response = await fetch("/api/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: emailInput, password })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                    localStorage.setItem("userName", result.user_name);
+                    localStorage.setItem("userId", result.user_id);
+                    localStorage.setItem("userRole", result.role);
+                    window.location.href = "/index.html";
+                } else {
+                    alert(result.detail);
+                }
+            } catch (error) {
+                alert("서버 오류가 발생했습니다.");
+            }
+        }
+
+        async function handleSignup(e) {
+            e.preventDefault();
+            const emailId = document.getElementById("emailId").value.trim();
+            const emailDomain = document.getElementById("emailDomain").value.trim();
+            const password = document.getElementById("signupPw").value.trim();
+            const user_name = document.getElementById("signupName").value.trim();
+
+            if (!emailId || !emailDomain) {
+                alert("이메일을 완전히 입력해주세요."); return;
+            }
+            if (!/^[a-zA-Z0-9._]+$/.test(emailId)) {
+                alert("이메일 아이디에 사용할 수 없는 문자가 포함되어 있습니다."); return;
+            }
+            if (password.length < 6) {
+                alert("비밀번호는 6자 이상 입력해주세요."); return;
+            }
+            if (user_name.length < 2) {
+                alert("이름은 2자 이상 입력해주세요."); return;
+            }
+
+            const email = `${emailId}@${emailDomain}`;
+            try {
+                const response = await fetch("/api/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password, user_name })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message + "\n로그인 해주세요.");
+                    switchTab('login');
+                } else {
+                    alert(result.detail);
+                }
+            } catch (error) {
+                alert("서버 오류가 발생했습니다.");
+            }
+        }
+    </script>
+</body>
+
+</html>

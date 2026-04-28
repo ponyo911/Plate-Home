@@ -1,0 +1,406 @@
+{
+    "navigation": [
+        {
+            "name": "브랜드",
+            "link": "#newGrid"
+        },
+        {
+            "name": "컬렉션",
+            "link": "#featuredGrid"
+        },
+        {
+            "name": "스토어",
+            "link": "#collectionGrid"
+        },
+        {
+            "name": "아카이브",
+            "link": "#mugGrid"
+        },
+        {
+            "name": "B2B/주문제작",
+            "link": "#plateGrid"
+        },
+        {
+            "name": "고객 문의",
+            "link": "#tablewareGrid"
+        },
+        {
+            "name": "매장 안내",
+            "link": "#brandBanner"
+        }
+    ],
+    "hero": [
+        {
+            "kicker": "SEASONAL TABLE SETTING",
+            "title": "가볍고 깨끗한 분위기의\n화이트 테이블웨어",
+            "subtitle": "절제된 구성과 부드러운 질감으로 완성한 데일리 다이닝 컬렉션",
+            "buttonText": "자세히 보기",
+            "link": "#featuredGrid",
+            "image": "img/BANNER3.jpg"
+        },
+        {
+            "kicker": "HOME DINING",
+            "title": "따뜻한 식탁을 위한\n모던 세라믹 시리즈",
+            "subtitle": "실용성과 미니멀한 디자인을 함께 담은 홈 다이닝 제안",
+            "buttonText": "컬렉션 보기",
+            "link": "#collectionGrid",
+            "image": "img/BANNER2.jpg"
+        },
+        {
+            "kicker": "SIGNATURE MUG",
+            "title": "감각적인 머그잔과 함께하는\n느린 티타임",
+            "subtitle": "오브제 같은 존재감으로 공간의 분위기를 바꾸는 머그 컬렉션",
+            "buttonText": "상품 보기",
+            "link": "#mugGrid",
+            "image": "img/BANNER1.jpg"
+        }
+    ],
+    "sections": {
+        "featured": [
+            {
+                "name": "[한국도자기X티보에렘] 오브제 04. 머그 1P (Stretching cat)",
+                "price": 44000,
+                "oldPrice": 44000,
+                "discount": 0,
+                "badge": "BEST",
+                "link": "#",
+                "image": "img/BEST1.png",
+                "detailTitle": "오브제처럼 놓여도 아름다운 캣 머그",
+                "detailDescription": "일상에서 가장 자주 손이 가는 머그를 조금 더 특별한 분위기로 제안하는 제품입니다. 부드러운 실루엣 위에 감각적인 고양이 드로잉이 더해져 테이블 위에서는 물론 선반 위에 두었을 때도 오브제처럼 자연스럽게 어우러집니다.",
+                "detailStoryTitle": "PRODUCT STORY",
+                "detailStoryBody": "오브제 04. 머그 1P는 단순한 컵을 넘어 일상의 장면을 조금 더 따뜻하게 만들어 주는 테이블웨어를 목표로 구성했습니다. 손에 안정감 있게 잡히는 형태와 편안한 사용감을 바탕으로, 커피와 차는 물론 다양한 음료를 담기 좋은 균형감 있는 사이즈를 갖추고 있습니다. 섬세한 드로잉 포인트는 과하지 않게 시선을 끌어 공간에 잔잔한 분위기를 더해 줍니다.",
+                "material": "도자기 / 세라믹",
+                "size": "상세페이지 참고",
+                "volume": "1P 머그",
+                "components": "머그 1P",
+                "microwave": "사용 가능",
+                "dishwasher": "권장 사용",
+                "notice": "도자기 제품 특성상 작은 점, 미세한 유약 흐름, 아주 옅은 색상 차이는 제작 공정 중 자연스럽게 발생할 수 있으며 이는 불량 사유에 해당하지 않습니다. 강한 충격이나 급격한 온도 변화는 파손의 원인이 될 수 있으니 사용 시 주의해 주세요.",
+                "shippingInfo": "주문 확인 후 순차 출고되며 평균 1~3영업일 내 발송됩니다. 제주 및 도서산간 지역은 추가 배송비가 발생할 수 있습니다.",
+                "returnInfo": "단순 변심에 의한 교환 및 반품은 수령 후 7일 이내 가능합니다. 사용 흔적, 세척 후 상품, 파손 상품은 교환 및 반품이 제한될 수 있습니다.",
+                "relatedTitle": "이 머그와 함께 보기 좋은 상품"
+            },
+            {
+                "name": "[한국도자기X티보에렘] 오브제 05. 머그 1P (Stretching cat)",
+                "price": 44000,
+                "oldPrice": 44000,
+                "discount": 0,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/BEST2.jpg"
+            },
+            {
+                "name": "초충도 접시 (12.7cm) 4p",
+                "price": 57600,
+                "oldPrice": 64000,
+                "discount": 10,
+                "badge": "SET",
+                "link": "#",
+                "image": "img/BEST3.jpg"
+            },
+            {
+                "name": "연 2인 홈세트 13p (2color)",
+                "price": 285600,
+                "oldPrice": 285600,
+                "discount": 0,
+                "badge": "BEST",
+                "link": "#",
+                "image": "img/BEST4.jpg"
+            },
+            {
+                "name": "[프라우나X티보에렘] 아키텍처 08. 티컵 1인세트 1(2)P (Place Vendôme)",
+                "price": 55000,
+                "oldPrice": 55000,
+                "discount": 0,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/BEST5.png"
+            },
+            {
+                "name": "크로셰 커피잔 세트 2(4)p (2인조)",
+                "price": 80700,
+                "oldPrice": 100800,
+                "discount": 20,
+                "badge": "HOT",
+                "link": "#",
+                "image": "img/BEST6.jpg"
+            },
+            {
+                "name": "에델 4인 홈세트 22p",
+                "price": 523500,
+                "oldPrice": 523500,
+                "discount": 0,
+                "badge": "SET",
+                "link": "#",
+                "image": "img/BEST7.jpg"
+            },
+            {
+                "name": "새솔 4인 홈세트 21p",
+                "price": 480000,
+                "oldPrice": 480000,
+                "discount": 0,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/BEST8.png"
+            }
+        ],
+        "newItems": [
+            {
+                "name": "기와 캔들 (구들)",
+                "price": 87000,
+                "oldPrice": 87000,
+                "discount": 0,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/NEW1.jpg"
+            },
+            {
+                "name": "기와 캔들 (마당)",
+                "price": 87000,
+                "oldPrice": 87000,
+                "discount": 0,
+                "badge": "HOT",
+                "link": "#",
+                "image": "img/NEW2.jpg"
+            },
+            {
+                "name": "담채 접시 1p (Blue)",
+                "price": 31000,
+                "oldPrice": 31000,
+                "discount": 0,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/NEW3.jpg"
+            },
+            {
+                "name": "기와 디퓨저 (구들)",
+                "price": 87000,
+                "oldPrice": 87000,
+                "discount": 0,
+                "badge": "BEST",
+                "link": "#",
+                "image": "img/NEW4.jpg"
+            },
+            {
+                "name": "담채 머그세트 2p(Gray)",
+                "price": 66000,
+                "oldPrice": 66000,
+                "discount": 0,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/NEW5.jpg"
+            }
+        ],
+        "collection": [
+            {
+                "name": "레트로블루 홈세트 21p",
+                "price": 364300,
+                "oldPrice": 455400,
+                "discount": 20,
+                "badge": "SET",
+                "link": "#",
+                "image": "img/COLLECT1.jpg"
+            },
+            {
+                "name": "미엘 4인 홈세트 19p",
+                "price": 303400,
+                "oldPrice": 379200,
+                "discount": 20,
+                "badge": "BEST",
+                "link": "#",
+                "image": "img/COLLECT2.jpg"
+            },
+            {
+                "name": "[무료예단포장]월야삼청 예단세트 20p",
+                "price": 682400,
+                "oldPrice": 853000,
+                "discount": 20,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/COLLECT3.jpg"
+            },
+            {
+                "name": "라임 머그세트 2p",
+                "price": 33600,
+                "oldPrice": 42000,
+                "discount": 20,
+                "badge": "HOT",
+                "link": "#",
+                "image": "img/COLLECT4.jpg"
+            }
+        ],
+        "mug": [
+            {
+                "name": "더셰프 컬러머그 4p",
+                "price": 74400,
+                "oldPrice": 93000,
+                "discount": 20,
+                "badge": "BEST",
+                "link": "#",
+                "image": "img/MUG1.jpg"
+            },
+            {
+                "name": "[프라우나X티모에렘] 아키텍쳐 22. 아키텍처머그 B 1P (Hotel Fantome)",
+                "price": 49000,
+                "oldPrice": 49000,
+                "discount": 0,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/MUG2.jpg"
+            },
+            {
+                "name": "필드플라워1 머그세트 4p",
+                "price": 74400,
+                "oldPrice": 93000,
+                "discount": 20,
+                "badge": "SET",
+                "link": "#",
+                "image": "img/MUG3.jpg"
+            },
+            {
+                "name": "오병이어 뚜껑머그 2(4)p",
+                "price": 65500,
+                "oldPrice": 87900,
+                "discount": 20,
+                "badge": "HOT",
+                "link": "#",
+                "image": "img/MUG4.jpg"
+            }
+        ],
+        "plate": [
+            {
+                "name": "초충도 접시 (12.7cm) 4p",
+                "price": 57600,
+                "oldPrice": 64000,
+                "discount": 10,
+                "badge": "BEST",
+                "link": "#",
+                "image": "img/PLATE1.jpg"
+            },
+            {
+                "name": "2026년 병오년 달력접시 1p",
+                "price": 38700,
+                "oldPrice": 43000,
+                "discount": 10,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/PLATE2.png"
+            },
+            {
+                "name": "[화이트블룸] Marrakesh Dinner Plate",
+                "price": 58400,
+                "oldPrice": 73000,
+                "discount": 20,
+                "badge": "HOT",
+                "link": "#",
+                "image": "img/PLATE3.jpg"
+            },
+            {
+                "name": "엘리제 접시세트 5p",
+                "price": 118400,
+                "oldPrice": 148000,
+                "discount": 20,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/PLATE4.jpg"
+            }
+        ],
+        "tableware": [
+            {
+                "name": "플라모르 로즈클라라 2인 홈세트 14p",
+                "price": 444000,
+                "oldPrice": 554700,
+                "discount": 20,
+                "badge": "BEST",
+                "link": "#",
+                "image": "img/TABLEWARE1.jpg"
+            },
+            {
+                "name": "초충도 2인조 식기세트 16p (생활반상기)",
+                "price": 394400,
+                "oldPrice": 493000,
+                "discount": 20,
+                "badge": "SET",
+                "link": "#",
+                "image": "img/TABLEWARE2.jpg"
+            },
+            {
+                "name": "므아레 6인 홈세트 33p",
+                "price": 809000,
+                "oldPrice": 809000,
+                "discount": 0,
+                "badge": "NEW",
+                "link": "#",
+                "image": "img/TABLEWARE3.jpg"
+            },
+            {
+                "name": "블루문 6인 홈세트 30p",
+                "price": 580000,
+                "oldPrice": 725000,
+                "discount": 20,
+                "badge": "HOT",
+                "link": "#",
+                "image": "img/TABLEWARE4.jpg"
+            }
+        ]
+    },
+    "banners": {
+        "banner1": {
+            "kicker": "EDITOR'S PICK",
+            "title": "입맛부터 식탁 분위기까지\n바꾸는 데일리 코디",
+            "description": "차분한 색감과 부드러운 질감의 그릇들로 완성하는 홈카페 무드",
+            "image": "img/BANNER6.jpg"
+        },
+        "banner2": {
+            "kicker": "PRINT MUG",
+            "title": "한 컵의 여유,\n감각적인 프린트 머그",
+            "description": "사용할수록 더 애착이 가는 포인트 머그 컬렉션",
+            "image": "img/BANNER5.jpg"
+        },
+        "banner3": {
+            "kicker": "TEXTURE PLATE",
+            "title": "가볍고 단단한 데일리 접시",
+            "description": "단순한 형태 안에서 은은한 표면감이 살아 있는 베이직 시리즈",
+            "image": "img/BANNER4.jpg"
+        },
+        "banner4": {
+            "kicker": "EVERYDAY TABLE",
+            "title": "어떤 테이블에도\n어울리는 깔끔함",
+            "description": "기본에 충실한 구성으로 매일 사용하기 좋은 데일리 테이블웨어",
+            "image": "img/BANNER2.jpg"
+        },
+        "brandBanner": {
+            "kicker": "PLATE YOUR HAPPINESS",
+            "title": "모던한 식기와 오브제로 완성하는\n당신만의 식탁",
+            "description": "절제된 디자인, 편안한 색감, 오래 쓰기 좋은 실용성을 담았습니다.",
+            "buttonText": "브랜드 전체 보기",
+            "link": "#",
+            "image": "img/BANNER1.jpg"
+        }
+    },
+    "footer": {
+        "brand": "PLATE & HOME",
+        "company": "플레이트앤홈",
+        "ceo": "홍길동",
+        "businessNumber": "123-45-67890",
+        "address": "서울특별시 강남구 테이블로 123",
+        "tel": "02-1234-5678",
+        "customer": [
+            "평일 10:00 - 17:00",
+            "점심 12:00 - 13:00",
+            "주말 및 공휴일 휴무"
+        ],
+        "about": [
+            "브랜드 소개",
+            "매장 안내",
+            "이벤트",
+            "공지사항"
+        ],
+        "policy": [
+            "이용약관",
+            "개인정보처리방침",
+            "배송안내",
+            "교환/반품"
+        ]
+    }
+}

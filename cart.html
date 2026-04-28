@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니 | PLATE & HOME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <style>
+        .cart-wrap {
+            max-width: 1200px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+
+        .cart-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #111;
+            padding-bottom: 16px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .cart-item-info strong {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-price {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .empty-msg {
+            text-align: center;
+            padding: 80px 0;
+            color: #888;
+            font-size: 15px;
+        }
+
+        .cart-total {
+            margin-top: 30px;
+            text-align: right;
+            font-size: 20px;
+        }
+
+        .cart-total strong {
+            font-size: 26px;
+            font-weight: 700;
+            color: #111;
+            margin-left: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="inner header-inner">
+            <a href="./index.html" class="logo">PLATE &amp; HOME</a>
+        </div>
+    </header>
+
+    <main class="cart-wrap">
+        <h2 class="cart-title">장바구니</h2>
+        <div id="cartContainer">
+        </div>
+    </main>
+
+    <script>
+        async function fetchCartData() {
+            // 로그인 상태 확인
+            const userId = localStorage.getItem("userId");
+            if (!userId) {
+                alert("로그인이 필요한 서비스입니다.");
+                window.location.href = "./login.html";
+                return;
+            }
+
+            const container = document.getElementById("cartContainer");
+            try {
+                // 내 아이디(userId)를 포함하여 정확한 데이터 요청
+                const response = await fetch(`/api/cart?user_id=${userId}`);
+                const data = await response.json();
+
+                window.currentCartItems = data.cart;
+
+                if (!data.cart || data.cart.length === 0) {
+                    container.innerHTML = `<div class="empty-msg">장바구니에 담긴 상품이 없습니다.</div>`;
+                    return;
+                }
+
+                let html = "";
+                let totalPrice = 0;
+
+                data.cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    totalPrice += itemTotal;
+
+                    html += `
+    <div class="cart-item">
+        <img src="/api/product-image/${item.product_id}" alt="${item.name}"
+            style="width:90px; height:90px; object-fit:cover; background:#f5f5f5; flex-shrink:0; margin-right:16px;"
+            onerror="this.style.background='#f5f5f5'; this.style.display='none'">
+        <div class="cart-item-info">
+            <strong>${item.name}</strong>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+                <div style="display: flex; border: 1px solid #ccc; background: #fff;">
+                    <button type="button" onclick="updateQuantity(${item.id}, ${item.quantity - 1})" style="padding: 4px 12px; cursor: pointer; border: none; background: transparent;">-</button>
+                    <span style="padding: 4px 12px; border-left: 1px solid #ccc; border-right: 1px solid #ccc; font-size: 14px;">${item.quantity}</span>
+                    <button type="button" onclick="updateQuantity(${item.id}, ${item.quantity + 1})" style="padding: 4px 12px; cursor: pointer; border: none; background: transparent;">+</button>
+                </div>
+                <span style="font-size: 13px; color: #888;">개당 ${item.price.toLocaleString("ko-KR")}원</span>
+            </div>
+        </div>
+        <div class="cart-item-price">
+            ${itemTotal.toLocaleString("ko-KR")}원
+            <button type="button" onclick="deleteCartItem(${item.id})" style="margin-left: 16px; padding: 4px 8px; border: 1px solid #ccc; background: #fff; cursor: pointer;">삭제</button>
+        </div>
+    </div>
+`;
+                });
+
+                html += `
+                    <div class="cart-total" style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                        <div>총 결제 금액: <strong>${totalPrice.toLocaleString("ko-KR")}원</strong></div>
+                        <button type="button" onclick="placeOrder('${totalPrice}')" style="background: #111; color: #fff; padding: 14px 32px; font-size: 16px; font-weight: bold; border: none; cursor: pointer;">결제하기</button>
+                    </div>
+                `;
+                container.innerHTML = html;
+
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = `<div class="empty-msg">데이터를 불러오는 중 오류가 발생했습니다.</div>`;
+            }
+        }
+
+        async function deleteCartItem(itemId) {
+            if (!confirm("장바구니에서 삭제하시겠습니까?")) return;
+            const response = await fetch(`/api/cart/${itemId}`, { method: "DELETE" });
+            if (response.ok) fetchCartData();
+        }
+
+        async function updateQuantity(itemId, newQuantity) {
+            if (newQuantity < 1) { alert("수량은 1개 이상이어야 합니다."); return; }
+            const response = await fetch(`/api/cart/${itemId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ quantity: newQuantity })
+            });
+            if (response.ok) fetchCartData();
+        }
+
+        async function placeOrder(totalPrice) {
+            if (!window.currentCartItems || window.currentCartItems.length === 0) return;
+
+            const userId = localStorage.getItem("userId");
+            const userName = localStorage.getItem("userName");
+
+            const orderData = {
+                user_id: userId,
+                customer_name: userName,
+                total_amount: parseInt(String(totalPrice).replace(/,/g, '')),
+                items: window.currentCartItems
+            };
+
+            const response = await fetch("/api/orders", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderData)
+            });
+            const result = await response.json();
+
+            if (response.ok) {
+                alert(`[주문 번호: ${result.order_id}]\n${userName}님, ${result.message}`);
+                fetchCartData();
+            } else {
+                alert("주문 처리 중 오류가 발생했습니다.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchCartData);
+    </script>
+    <script src="./js/header.js"></script>
+</body>
+
+</html>

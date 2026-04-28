@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plate & Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="inner header-inner">
+            <a href="./index.html" class="logo">PLATE &amp; HOME</a>
+
+            <nav class="nav" id="nav">
+                <ul id="navMenu"></ul>
+            </nav>
+
+            <div class="header-right">
+                <div class="header-links">
+                    <a href="./cart.html" class="header-link-btn" style="text-decoration: none; color: #111;">장바구니</a>
+                    <span class="header-divider">|</span>
+                    <a href="./login.html" class="header-link-btn"
+                        style="text-decoration: none; color: #111;">로그인/회원가입</a>
+                </div>
+
+                <button class="menu-toggle-btn" id="mobileMenuBtn" aria-label="메뉴">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="app">
+        <section class="hero" id="heroSection">
+            <div class="hero-slides" id="heroSlides"></div>
+            <button class="hero-arrow hero-arrow-left" id="heroPrev" aria-label="이전">‹</button>
+            <button class="hero-arrow hero-arrow-right" id="heroNext" aria-label="다음">›</button>
+            <div class="hero-dots" id="heroDots"></div>
+        </section>
+
+        <section class="section" id="featuredSection">
+            <div class="inner">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">Best Items</h2>
+                </div>
+                <div class="product-grid cols-4" id="featuredGrid"></div>
+                <div class="center-btn-wrap">
+                    <button class="pill-btn" type="button">MORE</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light" id="newSection">
+            <div class="inner">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">New</h2>
+                </div>
+                <div class="product-grid cols-5" id="newGrid"></div>
+            </div>
+        </section>
+
+        <section class="wide-banner" id="wideBannerOne"></section>
+
+        <section class="section" id="collectionSection">
+            <div class="inner">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">Collection</h2>
+                </div>
+                <div class="product-grid cols-4" id="collectionGrid"></div>
+            </div>
+        </section>
+
+        <section class="wide-banner" id="wideBannerTwo"></section>
+
+        <section class="section" id="mugSection">
+            <div class="inner">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">Mug</h2>
+                </div>
+                <div class="product-grid cols-4" id="mugGrid"></div>
+            </div>
+        </section>
+
+        <section class="wide-banner" id="wideBannerThree"></section>
+
+        <section class="section" id="plateSection">
+            <div class="inner">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">Plate</h2>
+                </div>
+                <div class="product-grid cols-4" id="plateGrid"></div>
+            </div>
+        </section>
+
+        <section class="wide-banner" id="wideBannerFour"></section>
+
+        <section class="section" id="tablewareSection">
+            <div class="inner">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">Tableware</h2>
+                </div>
+                <div class="product-grid cols-4" id="tablewareGrid"></div>
+            </div>
+        </section>
+
+        <section class="brand-banner" id="brandBanner"></section>
+    </main>
+
+    <footer class="footer" id="footer"></footer>
+
+    <script src="./js/app.js"></script>
+    <script src="./js/header.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const userName = localStorage.getItem("userName");
+            const userId = localStorage.getItem("userId");
+            const userRole = localStorage.getItem("userRole"); // 권한 정보 꺼내기
+            const headerLinks = document.querySelector(".header-links");
+
+            if (userName && headerLinks) {
+                let cartCount = 0;
+                if (userId) {
+                    try {
+                        const response = await fetch(`/api/cart?user_id=${userId}`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            cartCount = data.total_items;
+                        }
+                    } catch (error) { console.error(error); }
+                }
+
+                // 관리자(admin)일 경우에만 나타나는 특별한 메뉴 버튼
+                const adminMenu = userRole === "admin"
+                    ? `<a href="./admin.html" style="color: #e74c3c; font-weight: 700; text-decoration: none;">[관리자 모드]</a>`
+                    : "";
+
+                headerLinks.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 16px; font-size: 14px;">
+                        <span><strong>${userName}</strong>님</span>
+                        ${adminMenu}
+                        <a href="./cart.html" style="color: #111; text-decoration: none; font-weight: 500; display: flex; align-items: center;">
+                            장바구니 
+                            <span style="background: #e74c3c; color: #fff; border-radius: 50%; min-width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; margin-left: 6px; font-weight: bold;">
+                                ${cartCount}
+                            </span>
+                        </a>
+                        <a href="./order_list.html" style="color: #111; text-decoration: none; font-weight: 500;">주문내역</a>
+                        <button onclick="logout()" style="background: none; border: 1px solid #ccc; padding: 4px 10px; cursor: pointer; font-size: 12px; border-radius: 4px;">로그아웃</button>
+                    </div>
+                `;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("userName");
+            localStorage.removeItem("userId");
+            localStorage.removeItem("userRole"); // 로그아웃 시 권한 정보도 깔끔하게 삭제
+            alert("로그아웃 되었습니다.");
+            window.location.reload();
+        }
+    </script>
+
+    <!-- 플로팅 챗봇 버튼 -->
+    <div id="floatChatBtn" onclick="toggleChat()" style="
+    position: fixed; bottom: 32px; right: 32px; z-index: 9999;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #111; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        🍽️
+    </div>
+
+    <!-- 플로팅 챗봇 창 -->
+    <div id="floatChatBox" style="
+    display: none;
+    position: fixed; bottom: 104px; right: 32px; z-index: 9998;
+    width: 360px; height: 480px;
+    background: #fff; border: 1px solid #e5e5e5;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    flex-direction: column; overflow: hidden;
+">
+        <div
+            style="background: #111; color: #fff; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 700; font-size: 15px;">🍽️ 쇼핑 도우미</span>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <a href="./chatbot.html" style="color: #ccc; font-size: 12px; text-decoration: none;">전체화면</a>
+                <span onclick="toggleChat()" style="cursor: pointer; font-size: 18px; color: #ccc;">✕</span>
+            </div>
+        </div>
+        <div id="floatMessages"
+            style="flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; height: 360px;">
+        </div>
+        <div style="padding: 12px; border-top: 1px solid #e5e5e5; display: flex; gap: 8px;">
+            <input type="text" id="floatInput" placeholder="메시지 입력..." onkeydown="if(event.key==='Enter') floatSend()"
+                style="flex: 1; height: 40px; border: 1px solid #ccc; padding: 0 12px; font-size: 13px; font-family: inherit;">
+            <button onclick="floatSend()"
+                style="width: 60px; height: 40px; background: #111; color: #fff; border: none; cursor: pointer; font-size: 13px; font-weight: 700;">전송</button>
+        </div>
+    </div>
+
+    <script>
+        let floatHistory = [];
+        let floatInitialized = false;
+
+        function toggleChat() {
+            const box = document.getElementById('floatChatBox');
+            const isHidden = box.style.display === 'none';
+            box.style.display = isHidden ? 'flex' : 'none';
+            if (isHidden && !floatInitialized) {
+                floatAddMessage('bot', '안녕하세요! PLATE & HOME 쇼핑 도우미입니다 😊 무엇이든 물어보세요!');
+                floatInitialized = true;
+            }
+        }
+
+        function floatAddMessage(role, text) {
+            const container = document.getElementById('floatMessages');
+            const div = document.createElement('div');
+            div.style.cssText = `display:flex; gap:8px; align-items:flex-start; ${role === 'user' ? 'flex-direction:row-reverse; align-self:flex-end;' : ''}`;
+            div.innerHTML = `
+            <div style="width:28px; height:28px; border-radius:50%; background:${role === 'bot' ? '#111' : '#e5e5e5'}; 
+                color:${role === 'bot' ? '#fff' : '#111'}; display:flex; align-items:center; justify-content:center; 
+                font-size:13px; flex-shrink:0;">
+                ${role === 'bot' ? '🍽' : '👤'}
+            </div>
+            <div style="padding:10px 14px; font-size:13px; line-height:1.6; max-width:220px;
+                background:${role === 'bot' ? '#f5f5f5' : '#111'}; color:${role === 'bot' ? '#111' : '#fff'};
+                border-radius:${role === 'bot' ? '0 10px 10px 10px' : '10px 0 10px 10px'};">
+                ${text}
+            </div>
+        `;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function floatSend() {
+            const input = document.getElementById('floatInput');
+            const message = input.value.trim();
+            if (!message) return;
+            input.value = '';
+            floatAddMessage('user', message);
+            floatHistory.push({ role: 'user', content: message });
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, history: floatHistory.slice(-10) })
+                });
+                const data = await response.json();
+                floatAddMessage('bot', data.reply);
+                floatHistory.push({ role: 'assistant', content: data.reply });
+
+                if (data.products && data.products.length > 0) {
+                    floatAddProductCards(data.products);
+                }
+            } catch (e) {
+                floatAddMessage('bot', '오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        }
+
+        function floatAddProductCards(products) {
+            const container = document.getElementById('floatMessages');
+            const wrapper = document.createElement('div');
+            wrapper.style.cssText = 'display:flex; flex-direction:column; gap:8px; width:100%;';
+
+            products.forEach(p => {
+                const card = document.createElement('div');
+                card.onclick = () => window.location.href = `./sub.html?id=${p.id}`;
+                card.style.cssText = `
+            display:flex; gap:10px; align-items:center;
+            border:1px solid #e5e5e5; background:#fff;
+            padding:8px; cursor:pointer; border-radius:4px;
+            transition:background 0.2s;
+        `;
+                card.onmouseover = () => card.style.background = '#f9f9f9';
+                card.onmouseout = () => card.style.background = '#fff';
+                card.innerHTML = `
+            <img src="${p.image}" alt="${p.name}"
+                style="width:56px; height:56px; object-fit:cover; background:#f5f5f5; flex-shrink:0;">
+            <div style="min-width:0;">
+                <div style="font-size:12px; color:#333; line-height:1.4; margin-bottom:3px;
+                    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                    ${p.name}
+                </div>
+                <div style="font-size:13px; font-weight:700; color:#111;">
+                    ${p.price.toLocaleString('ko-KR')}원
+                </div>
+                <div style="font-size:11px; color:#888; margin-top:2px;">클릭하여 상세보기 →</div>
+            </div>
+        `;
+                wrapper.appendChild(card);
+            });
+
+            container.appendChild(wrapper);
+            container.scrollTop = container.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>
